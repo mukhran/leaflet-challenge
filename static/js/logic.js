@@ -19,7 +19,7 @@ function createFeatures(earthquakeData) {
   //'#B6F34C', '#E1F34C', '#F3DB4C', '#F3B94C', '#F0A76A','#F06A6A' starting from 0
 
 
-  // return color based on value
+  // Return color based on value
 function getDepth(x) {
 	return x > 90 ? "#F06A6A" :
 	       x > 70 ? "#F0A76A" :
@@ -34,7 +34,7 @@ function getMag(x){
     return x*4
 }
 
-//style function 
+//Style function 
 function style(feature) {
 	return {
         opacity: 1,
@@ -112,7 +112,10 @@ function createMap(earthquakes) {
     
 
     limits.forEach(function(limit, index) {
-      labels.push("<i style=\"background-color: " + colors[index] + "\"></i>");
+      labels.push(
+        "<li><i style=\"background-color: " + colors[index] + "\"></i>" + 
+      limits[index] + (limits[index + 1] ? "&ndash;" + limits[index + 1] + "<br>" : "+")
+      );
     });
 
     div.innerHTML += "<ul>" + labels.join("") + "</ul>";
@@ -123,3 +126,4 @@ function createMap(earthquakes) {
   legend.addTo(myMap);
 
 }
+
